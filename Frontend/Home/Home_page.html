@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paw Rescue - Give them hope, give them a home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Home_page.css">
+    <link rel="stylesheet" href="Login.css">
+   </head>
+   <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/Home/Home_page.html" class="logo">
+                <i class="fas fa-paw"></i>
+                Paw Rescue
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="/Home/Home_page.html" class="nav-link active" >Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/HTML/about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="loginBtn">Login</button>
+                </li>
+                <li class="nav-item">
+                    <button class="theme-toggle" id="themeToggle" onclick="themeToggle()">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </div>
+        </div>
+    </nav>
+   
+ <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1><i class="fas fa-heart"></i> Paw Rescue</h1>
+            <p class="hero-tagline">Give them hope, give them a home</p>
+            <div class="cta-buttons">
+                <a href="report.html" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    Report
+                </a>
+            </div>
+        </div>
+    </section>
+  <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How Paw Rescue Works</h2>
+                <p class="section-subtitle">Making a difference in the lives of stray dogs through community action</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>Report Strays</h3>
+                    <p>Easily report stray dogs in your area with our simple form. Include photos, location, and condition details to help rescue teams respond quickly.</p>
+                    <a href="report.html" class="feature-link">Start Reporting <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Rescue & Care</h3>
+                    <p>Local shelters receive reports and coordinate rescue efforts. Dogs receive medical care, rehabilitation, and preparation for adoption.</p>
+                    <a href="about.html" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>    
+    </section>
+ <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="150">0</div>
+                    <div class="stat-label">Dogs Rescued</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="89">0</div>
+                    <div class="stat-label">Successful Adoptions</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="45">0</div>
+                    <div class="stat-label">Active Volunteers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="12">0</div>
+                    <div class="stat-label">Partner Shelters</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-paw"></i>
+                Paw Rescue
+            </div>
+            
+            <div class="footer-nav">
+                <a href="Landing_page.html">Home</a>
+                <a href="report.html">Report</a>
+                <a href="/HTML/about.html">About</a>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/_cavilax_x/" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            
+            <p class="footer-text">
+                © 2025 Paw Rescue. A college project demonstrating responsive web development.
+                <br>Made with ❤️ for our four-legged friends.
+            </p>
+        </div>
+    </footer>  
+    <!-- Login Modal Overlay -->
+<div id="login-popup" class="hidden">
+  <div class="login_container" id="container">
+    <div class="form-container sign-up">
+      <form>
+        <h1>Create Account</h1>
+        <div class="social-icons">
+          <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+          <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+          <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+        <span>or use your email for registration</span>
+        <input type="text" placeholder="Name" />
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Password" />
+        <button>Sign Up</button>
+      </form>
+    </div>
+    <div class="form-container sign-in">
+      <form>
+        <h1>Sign In</h1>
+        <div class="social-icons">
+          <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+          <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+          <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+        <span>or use your email password</span>
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Password" />
+        <a href="#">Forget Your Password?</a>
+        <button>Sign In</button>
+      </form>
+    </div>
+    <div class="toggle-container">
+        <div class="toggle">
+          <div class="toggle-panel toggle-left">
+            <h1>Welcome Back!</h1>
+            <p>Enter your personal details to use all of site features</p>
+            <button class="hidden" id="login">Sign In</button>
+          </div>
+          <div class="toggle-panel toggle-right">
+            <h1>Hello, Friend!</h1>
+            <p>
+              Register with your personal details to use all of site features
+            </p>
+            <button class="hidden" id="register">Sign Up</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+    <script src="./scriptabout.js"></script> 
+
+</body>
+</html>    

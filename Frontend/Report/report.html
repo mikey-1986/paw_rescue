@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report a Stray Dog</title>
+    <link rel="stylesheet" href="report.css">
+
+</head>
+<body>
+    <div class="form-container">
+        <h1 class="form-title">Report a Stray Dog</h1>
+        
+        <form id="strayDogForm">
+            <!-- Photo Upload Area -->
+            <div class="photo-upload" id="photoUpload">
+                <svg class="photo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <polyline points="21,15 16,10 5,21"/>
+                </svg>
+                <div class="photo-text">
+                    <div>Click to upload photo</div>
+                    <div style="font-size: 14px; margin-top: 5px; opacity: 0.7;">or drag and drop</div>
+                </div>
+                <button type="button" class="remove-photo" id="removePhoto">&times;</button>
+            </div>
+            <input type="file" id="photoInput" class="hidden-input" accept="image/*">
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="description" class="form-label">Description</label>
+                <textarea 
+                    id="description" 
+                    name="description" 
+                    class="form-textarea" 
+                    placeholder="Please describe the dog's appearance, location, behavior, and any other relevant details..."
+                    required
+                ></textarea>
+            </div>
+
+            <!-- Contact Info Toggle -->
+            <div class="toggle-container" id="contactToggle">
+                <div class="toggle-switch" id="toggleSwitch">
+                    <div class="toggle-knob"></div>
+                </div>
+                <label class="toggle-label">Include contact info</label>
+            </div>
+
+            <!-- Contact Fields -->
+            <div class="contact-fields" id="contactFields">
+                <input type="text" id="contactName" name="contactName" class="form-input" placeholder="Your name">
+                <input type="tel" id="contactPhone" name="contactPhone" class="form-input" placeholder="Phone number">
+                <input type="email" id="contactEmail" name="contactEmail" class="form-input" placeholder="Email address">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn" id="submitBtn">Report</button>
+
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                Thank you! Your stray dog report has been submitted successfully.
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

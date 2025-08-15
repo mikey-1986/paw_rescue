@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paw Rescue - Report a Stray Dog</title>
+
+    <!-- Fonts and Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Header/Footer Styles -->
+    <link rel="stylesheet" href="hedder_footer.css">
+
+    <!-- Inline Report Form Styles -->
+    <style>
+        /* Report Page CSS goes here */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /*main {
+            margin-top: 100px;
+            margin-bottom: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }*/
+body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff9a56, #ffad56);
+        }
+
+        .form-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 40px;
+            letter-spacing: -0.5px;
+        }
+
+        .photo-upload {
+            width: 100%;
+            height: 200px;
+            border: 3px dashed #e0e6ed;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-upload:hover {
+            border-color: #ff9a56;
+            background-color: #fff8f4;
+            transform: translateY(-2px);
+        }
+
+        .photo-upload.drag-over {
+            border-color: #ff9a56;
+            background-color: #fff8f4;
+            transform: scale(1.02);
+        }
+
+        .photo-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+            opacity: 0.6;
+        }
+
+        .photo-text {
+            color: #7f8c8d;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .photo-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 13px;
+        }
+
+        .remove-photo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(231, 76, 60, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-upload:hover .remove-photo {
+            opacity: 1;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+
+        .form-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 16px;
+            border: 2px solid #e0e6ed;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+            transition: all 0.3s ease;
+            background-color: #fafbfc;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: #ff9a56;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(255, 154, 86, 0.1);
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background-color: #e0e6ed;
+            border-radius: 15px;
+            margin-right: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background-color: #ff9a56;
+        }
+
+        .toggle-knob {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch.active .toggle-knob {
+            transform: translateX(30px);
+        }
+
+        .toggle-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .contact-fields {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+        }
+
+        .contact-fields.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e6ed;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ff9a56;
+            box-shadow: 0 0 0 3px rgba(255, 154, 86, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #ff9a56, #ffad56);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 154, 86, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .hidden-input {
+            display: none;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+
+            .form-title {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            .photo-upload {
+                height: 150px;
+            }
+        }
+        /* Paste your report form CSS here (already provided) */
+        /* [PASTE YOUR STYLES HERE WITHOUT <style>] */
+        /* -- Report page CSS already given earlier -- */
+        /* I'll skip re-pasting it here unless needed */
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/Home/Home_page.html" class="logo">
+                <i class="fas fa-paw"></i>
+                Paw Rescue
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="/Home/Home_page.html" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="/HTML/about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><button class="nav-link" id="loginBtn">Login</button></li>
+                <li class="nav-item">
+                    <button class="theme-toggle" id="themeToggle" onclick="themeToggle()">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Report Page Content -->
+    <main>
+        <div class="form-container">
+            <h1 class="form-title">Report a Stray Dog</h1>
+            <form id="strayDogForm">
+                <div class="photo-upload" id="photoUpload">
+                    <svg class="photo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21,15 16,10 5,21"/>
+                    </svg>
+                    <div class="photo-text">
+                        <div>Click to upload photo</div>
+                        <div style="font-size: 14px; margin-top: 5px; opacity: 0.7;">or drag and drop</div>
+                    </div>
+                    <button type="button" class="remove-photo" id="removePhoto">&times;</button>
+                </div>
+                <input type="file" id="photoInput" class="hidden-input" accept="image/*">
+
+                <div class="form-group">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea 
+                        id="description" 
+                        name="description" 
+                        class="form-textarea" 
+                        placeholder="Please describe the dog's appearance, location, behavior, and any other relevant details..."
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="toggle-container" id="contactToggle">
+                    <div class="toggle-switch" id="toggleSwitch">
+                        <div class="toggle-knob"></div>
+                    </div>
+                    <label class="toggle-label">Include contact info</label>
+                </div>
+
+                <div class="contact-fields" id="contactFields">
+                    <input type="text" id="contactName" name="contactName" class="form-input" placeholder="Your name">
+                    <input type="tel" id="contactPhone" name="contactPhone" class="form-input" placeholder="Phone number">
+                    <input type="email" id="contactEmail" name="contactEmail" class="form-input" placeholder="Email address">
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">Report</button>
+
+                <div class="success-message" id="successMessage">
+                    Thank you! Your stray dog report has been submitted successfully.
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-paw"></i>
+                Paw Rescue
+            </div>
+            
+            <div class="footer-nav">
+                <a href="Landing_page.html">Home</a>
+                <a href="report.html">Report</a>
+                <a href="/HTML/about.html">About</a>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/_cavilax_x/" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            
+            <p class="footer-text">
+                © 2025 Paw Rescue. A college project demonstrating responsive web development.
+                <br>Made with ❤️ for our four-legged friends.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Optional JS -->
+    <script src="script.js"></script>
+</body>
+</html>
